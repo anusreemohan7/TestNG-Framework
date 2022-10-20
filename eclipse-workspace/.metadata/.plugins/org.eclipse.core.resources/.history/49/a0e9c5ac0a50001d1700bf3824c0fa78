@@ -1,0 +1,19 @@
+package utilitties;
+
+public class ExcelUtilis {
+
+	
+	static XSSFWorkbook workbook;
+	static XSSFSheet sheet;
+	
+	public ExcelUtilis(String excelPath, String sheetName) {
+		try {
+			workbook = new XSSFWorkbook(excelPath);
+			sheet = workboo
+		}
+		catch (Exception e){
+			e.printStackTrace();
+			
+		}
+	}
+}

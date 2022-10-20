@@ -1,0 +1,36 @@
+package tests;
+
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+
+import org.testng.annotations.AfterTest;
+
+import org.openqa.selenium.WebDriver;
+import pages.HomePage;
+import utilitties.*;
+
+public class Login extends Base {
+	
+WebDriver driver;
+	
+	
+	@Test(dataProvider = "test1data")
+      public void loginTest(String username,String password) {
+		driver = intializeDriver();
+		driver.get("https://www.efinancialcareers.com/");
+		HomePage hm = new HomePage(driver);
+
+		hm.acceptCookies();
+		hm.signIn(username,password);
+		hm.verifyLogin("jneville@efinancialcareers.com");
+		
+		
+
+	}
+	@AfterMethod
+	@AfterTest
+	public void tearDown() {
+		driver.close();
+        driver.quit();
+	}
+}

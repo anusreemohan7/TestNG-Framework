@@ -1,0 +1,43 @@
+package pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+
+
+
+public class HomePage {
+	
+	@FindBy(xpath = "//*[text()='Accept all']")
+	WebElement acceptButton;
+
+	@FindBy(xpath = "//button[contains(text(),' Sign in / Register ')]")
+	WebElement signInButton;
+
+
+	@FindBy(xpath = "//input[@placeholder='Email']")
+	WebElement emailTextBox;
+	
+	@FindBy(xpath = "//input[@placeholder='Password']")
+	WebElement passwordTextBox;
+	
+	@FindBy(xpath = "//button[contains(text(),'Continue')]")
+	WebElement continueButton;
+	
+	@FindBy(xpath = "//button[contains(text(),'Submit')]")
+	WebElement submitButton;
+	
+	@FindBy(xpath = "//div[@id='button-basic']")
+	WebElement profileIcon;
+	
+
+
+  public void acceptCookies() {
+	  acceptButton.click();
+  }
+  public void signIn() {
+	  
+	  acceptButton.click();
+  }
+}

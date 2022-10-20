@@ -1,0 +1,46 @@
+package tests;
+
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.DataProvider;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
+import pages.HomePage;
+import utilitties.*;
+
+public class Login extends Base {
+	
+WebDriver driver;
+	
+    ExcelDataProvider ex = new ExcelDataProvider();
+    
+	@Test(dataProvider = "test1data")
+      public void loginTest(String username,String password) {
+		driver = intializeDriver();
+		driver.get("https://www.efinancialcareers.com/");
+		HomePage hm = new HomePage(driver);
+		
+		hm.acceptCookies();
+		hm.signIn(username,password);
+		hm.verifyLogin(username);
+		
+
+	}
+
+	@DataProvider(name="test1data")	
+	public Object[][] getCredentials() throws IOException {
+		Object logInData[][]=ex.testData("./test data/loginData.xlsx", "Sheet1");
+		return logInData;
+	}
+
+//	@AfterMethod
+//	@AfterTest
+//	public void tearDown() {
+//		driver.close();
+//        driver.quit();
+//	}
+}

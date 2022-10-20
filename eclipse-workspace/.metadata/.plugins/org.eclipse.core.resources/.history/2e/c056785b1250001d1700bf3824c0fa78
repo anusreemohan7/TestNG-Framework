@@ -1,0 +1,37 @@
+package utilitties;
+
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class ExcelUtilis {
+	
+	static XSSFWorkbook workbook;
+	static XSSFSheet sheet;
+	
+	public ExcelUtilis(String excellPath,String sheetName) throws IOException {
+		 workbook = new XSSFWorkbook("./test data/loginData.xlsx");
+		sheet = workbook.getSheet("Sheet1");
+	}
+	
+	public static void main(String[] args) {
+		try {
+			getRowCount();
+			getCellData(1,0);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void getRowCount() throws IOException {
+		
+		int rowCount = sheet.getPhysicalNumberOfRows();
+		System.out.println("No pof rows:"+rowCount);
+	}
+   public static void getCellData(int rowNum, int cellNum) throws IOException {
+	  
+		String cellData =sheet.getRow(rowNum).getCell(cellNum).getStringCellValue();
+		System.out.println(cellData);
+   }
+}
